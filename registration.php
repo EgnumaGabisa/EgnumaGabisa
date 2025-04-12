@@ -1,44 +1,46 @@
 <?php
-require 'connection.php';
-if(isset($_POST["Register"])){
+require "config.php";
+if(isset($_POST["submit"])){
     $name=$_POST["name"];
-$dept=$_POST["dept"];
-$gender=$_POST["gender"];
-$course=$_POST["course"];
-
+    $username=$_POST["username"];
+    $email=$_POST["email"];
+    $password=$_POST["password"];
+    $ConfirmPassword=$_POST["ConfirmPassword"];
+    $duplicate = mysqli_query($conn,"SELECT * FROM tb_user WHERE username = '$username' OR email = 'email'");
+    if(mysqli_num_rows($duplicate)>0 ){
+        echo "<script>alert('username or email Has Already Taken')</script>";
+    }
+    else
+    if($password==$ConfirmPassword){
+        $query = "INSERT INTO tb_user values('','$name','$username','$email','$password')";
+        mysqli_query($conn, $query);  
+        echo "<script>alert(registration has successful)</script>";
+    }
+    else{
+        echo"<script>alert(password does not match)</script>";
+    }
 }
-$query="INSERT INTO tb_data values('name','dept','gender','course')";
-mysqli_query($conn,$query);
-echo "<script alert(data inserted successful)";
-
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<body>
-    <form name="registration" action="registration.php"method="POST"><br>
-        name:<input type="text"name="name"required=><br>
-        <label for="">gender</label><br>
-        <input type="radio"name="gender"value="male"required>male<br>
-        <input type="radio"name="gender"value="female"required>female
-        <br>
- <label for=""></label>course<br>
-    <input type="checkbox"name= "course[]"value ="internet programming"required>internet programming<br>
-    <input type="checkbox"name="course[]"value = "distributed system"required>distributed system<br>
-    <input type="checkbox"name="course[]"value ="advanced programming"required>advanced programming<br>
-<label for="">Dept</label><br>
-    <select>
-        <option value="SE"required>SE</option><br>
-        <option value="CSE"required>CSE</option><br>
-    </select>
-    <br>
-<input type="button"name="button"value="Register"><br>
-
-<input type="button"name="button"value="cancel">
-    </form>
-</body>
+<html>
+    <head>
+        <title>registration</title>
+    </head>
+    <body>
+        <h1>registration</h1>
+        <form class=""action=""method ="POST"autocomplete="off">
+<label for="name">name:</label>
+<input type="text"name="name"id=name required value=""><br>
+<label for="username">username:</label>
+<input type="text"name="username"id=username required value=""><br>
+<label for="email">email:</label>
+<input type="email"name= "email"id = email required value=""><br>
+<label for="Password ">Password:</label>
+<input type="password"name= "password"id = password required value=""><br>
+<label for="ConfirmPassword">ConfirmPassword:</label>
+<input type="ConfirmPassword"name= "ConfirmPassword"id = ConfirmPassword required value=""><br>
+<button type="submit"name="submit">Register</button> </form>
+ <br>
+    <a href="login.ph">login</a>
+    </br>
+    </body>
 </html>
