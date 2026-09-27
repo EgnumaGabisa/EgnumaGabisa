@@ -4,7 +4,7 @@
 💼 **Former Network Specialist** @ ZTE / Ethio Telecom  
 🚀 **Focus**: Full-Stack Web, Cross-Platform Mobile Applications & AI Systems  
 
-🌐 **Live Portfolio:** [https://portfolio-egnumagabisa.vercel.app](https://portfolio-egnumagabisa.vercel.app)
+🌐 **Live Portfolio:** [https://portfolio-git-main-egnuma-gabisa.vercel.app/#]
 
 ---
 
